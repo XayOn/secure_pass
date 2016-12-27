@@ -38,6 +38,7 @@ TODO
 - Stop using getpass? Maybe only if a gpg daemon is running
 - Allow users to select browser to be used with selenium
 - Session isolation
+- Better pwgen integration (allow users to choose keylen and other options)
 
 
 Usage
