@@ -16,6 +16,10 @@ Yet I missed a few things:
 
 - Automatic password changing
 - Auto-login
+- Different usernames for different webs
+
+And I didn't really see any usefulness in categories
+(yet I might change my mind on that in the near future)
 
 I also didn't want to make it a firefox/chrome extensions, as
 that can be compromised and it's not flexible enough.
