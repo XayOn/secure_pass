@@ -1,0 +1,5 @@
+python-gnupg
+clipboard
+selenium
+docopt
+gitpython
