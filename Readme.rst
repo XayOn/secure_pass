@@ -38,3 +38,26 @@ TODO
 - Stop using getpass? Maybe only if a gpg daemon is running
 - Allow users to select browser to be used with selenium
 - Session isolation
+
+
+Usage
+-----
+
+::
+
+	Usage:
+	    keystore --path <PATH> --recipient <RECIPIENT> --list-sites
+	    keystore --path <PATH> --recipient <RECIPIENT> --get --site_name <NAME> --username <USERNAME>
+	    keystore --path <PATH> --recipient <RECIPIENT> --delete --site_name <NAME>
+
+	Options:
+	    --path=<path>           Path to keystore
+	    --recipient=<recipient> GPG recipient to encrypt against
+	    --list-sites            list-sites
+	    --get
+	    --delete
+	    --site_name=<name>      Site name
+	    --username=<username>   Username for that site
+
+	Examples:
+	    keystore --path ".passwords" --recipient "me@davidfrancos.net" --list-sites
