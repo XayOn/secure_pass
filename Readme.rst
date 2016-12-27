@@ -27,3 +27,10 @@ wich then lead to:
 
 So I wrote ``secure_pass``. This is still a work in progress and needs
 quite a lot polishing (and documentation).
+
+TODO
+----
+
+- Stop using getpass? Maybe only if a gpg daemon is running
+- Allow users to select browser to be used with selenium
+- Session isolation
