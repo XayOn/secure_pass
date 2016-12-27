@@ -4,9 +4,16 @@ KeyStore
 Usage:
     keystore --path <PATH> --recipient <RECIPIENT> --list-sites
     keystore --path <PATH> --recipient <RECIPIENT> --get --site_name <NAME> \
---username <USERNAME>
+    --username <USERNAME>
     keystore --path <PATH> --recipient <RECIPIENT> --delete \
 --site_name <NAME>
+    keystore --path <PATH> --recipient <RECIPIENT> --login --site_name <NAME> \
+--site_type <SITE_TYPE> --username <USERNAME>
+    keystore --path <PATH> --recipient <RECIPIENT> --logout \
+    --site_name <NAME> --site_type <SITE_TYPE>
+    keystore --path <PATH> --recipient <RECIPIENT> --change_password \
+    --site_name <NAME> --site_type <SITE_TYPE> --username <USERNAME> \
+    --newkey <NEW_KEY>
 
 Options:
     --path=<path>           Path to keystore
@@ -14,7 +21,12 @@ Options:
     --list-sites            list-sites
     --get
     --delete
+    --login
+    --logout
+    --change_password       Change password
+    --newkey=<key>          New key for password change
     --site_name=<name>      Site name
+    --site_type=<site_type> Site type (Facebook|Google)
     --username=<username>   Username for that site
 
 Examples:
@@ -60,7 +72,7 @@ class Key:
 
         """
         return GPG.decrypt_file(
-            open(self.file_, 'rb'), passphrase=getpass()).data
+            open(self.file_, 'rb'), passphrase=getpass()).data.decode('utf-8')
 
     @key.setter
     def key(self, key):
@@ -249,7 +261,8 @@ def main():
         Given a args dict, return action
 
         """
-        actions = ["--get", "--delete", "--list-sites"]
+        actions = ["--get", "--login", "--change_password",
+                   "--delete", "--list-sites"]
         action = [a for a in actions if args[a]][0]
         args.pop(action)
         return clean(action)
@@ -258,6 +271,8 @@ def main():
     dest = KeyStore(args.pop("--path"), args.pop("--recipient"))
     if args["--site_name"]:
         dest = dest.sites[args.pop('--site_name')]
+        if args["--site_type"]:
+            dest.site_type = args.pop("--site_type")
     action = get_action(args)
     return getattr(dest, action)(**{clean(a): b for a, b in args.items() if b})
 
