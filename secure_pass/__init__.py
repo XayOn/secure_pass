@@ -4,10 +4,16 @@ KeyStore
 Usage:
     keystore --path <PATH> --recipient <RECIPIENT> --list-sites
     keystore --path <PATH> --recipient <RECIPIENT> --get --site_name <NAME> \
-    keystore --path <PATH> --recipient <RECIPIENT> --login --site_name <NAME> \
---username <USERNAME> --site_type <SITE_TYPE>
+    --username <USERNAME>
     keystore --path <PATH> --recipient <RECIPIENT> --delete \
 --site_name <NAME>
+    keystore --path <PATH> --recipient <RECIPIENT> --login --site_name <NAME> \
+--site_type <SITE_TYPE> --username <USERNAME>
+    keystore --path <PATH> --recipient <RECIPIENT> --logout \
+    --site_name <NAME> --site_type <SITE_TYPE>
+    keystore --path <PATH> --recipient <RECIPIENT> --change_password \
+    --site_name <NAME> --site_type <SITE_TYPE> --username <USERNAME> \
+    --newkey <NEW_KEY>
 
 Options:
     --path=<path>           Path to keystore
@@ -16,6 +22,9 @@ Options:
     --get
     --delete
     --login
+    --logout
+    --change_password       Change password
+    --newkey=<key>          New key for password change
     --site_name=<name>      Site name
     --site_type=<site_type> Site type (Facebook|Google)
     --username=<username>   Username for that site
@@ -252,7 +261,8 @@ def main():
         Given a args dict, return action
 
         """
-        actions = ["--get", "--login", "--delete", "--list-sites"]
+        actions = ["--get", "--login", "--change_password",
+                   "--delete", "--list-sites"]
         action = [a for a in actions if args[a]][0]
         args.pop(action)
         return clean(action)

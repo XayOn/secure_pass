@@ -31,11 +31,12 @@ class Facebook:
         self.browser.get("http://www.facebook.com")
         self.browser.find_element_by_id("show_me_how_logout_1").click()
 
-    def change_password(self, old_key, new_key):
+    def change_password(self, username, old_key, new_key):
         """
         Change password
 
         """
+        self.login(username, old_key)
         self.browser.get(
             "https://www.facebook.com/settings"
             "?tab=account&section=password&view")
