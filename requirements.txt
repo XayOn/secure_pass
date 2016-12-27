@@ -3,3 +3,4 @@ clipboard
 selenium
 docopt
 gitpython
+pwgen
