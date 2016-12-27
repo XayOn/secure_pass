@@ -1,7 +1,7 @@
 Secure Pass
 -----------
 
-This is a more pythonic implementation of ``pass``
+This is a pythonic implementation of ``pass``
 (https://www.passwordstore.org/).
 
 I liked ``pass`` main features:
